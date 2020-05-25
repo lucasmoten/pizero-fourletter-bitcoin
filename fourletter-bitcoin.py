@@ -195,14 +195,15 @@ while True:
         
     # RECOMMENDED FEE PER BYTE
     if (show_feerec == 1):
-        lowfee = float(satfee) / 125
+        lowfee = int(float(satfee) / 125)
         message = "SATS PER BYTE FOR NEXT BLOCK " + fee1
         scroll_message(message)
         message = "HALF HOUR " + fee2
         scroll_message(message)
         message = "IN AN HOUR " + fee3
         scroll_message(message)
-        message = "MINIMUM FOR MEMPOOL " + str(lowfee)    
+        message = "MINIMUM FOR MEMPOOL " + str(lowfee)
+        scroll_message(message)
 
     # Rest between iterations
     time.sleep(2)
