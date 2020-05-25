@@ -25,6 +25,7 @@ show_pricemsg = 1
 show_blockheight = 1
 show_mempoolsize = 1
 show_minfee = 1
+show_recfee = 1
 
 # Timing
 minutes_between_api_updates = 5
@@ -173,6 +174,12 @@ while True:
     if (show_minfee == 1):
         message = "MIN FEE " + satfee
         scroll_message(message)
+        
+    # RECOMMENDED FEE PER BYTE
+    if (show_feerec == 1):
+        recfee = float(satfee) / 125
+        message = "RECOMMENDED SATS PER BYTE " + str(int(recfee))
+        scroll_message(message)        
 
     # Rest between iterations
     time.sleep(2)
