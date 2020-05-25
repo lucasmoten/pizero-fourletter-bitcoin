@@ -2,7 +2,7 @@
 Bitcoin based scripts using the Pimoroni Four Letter pHAT on Raspberry Pi Zero
 
 # Configuration
-Configurable options are all set at the top of the script
+Configurable options for **[fourletter-bitcoin.py](./fourletter-bitcoin.py)** are all set at the top of the script
 
 ## RPC Settings
 
