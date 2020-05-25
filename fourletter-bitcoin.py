@@ -25,7 +25,7 @@ show_pricemsg = 1
 show_blockheight = 1
 show_mempoolsize = 1
 show_minfee = 1
-show_recfee = 1
+show_feerec = 1
 
 # Timing
 minutes_between_api_updates = 5
@@ -33,6 +33,10 @@ seconds_for_panel_display = 1
 scrolling_speed = 8
 
 # Subroutines - No need to change stuff below this line -----------------------------------
+
+class AppURLopener(urllib.FancyURLopener):
+    version = "PiZero-fourletter-bitcoin/1.1"
+urllib._urlopener = AppURLopener()
 
 def scroll_message(message):
     m = "    " + message
@@ -62,7 +66,6 @@ def getbitcoinprice():
     # Grab first 4. TBD: cut at decimal to handle 10K+
     p = p[:4]
     return p, pm
-
 
 def btcprice_from_coindesk():
     url = 'https://api.coindesk.com/v1/bpi/currentprice/USD.json'
@@ -113,6 +116,21 @@ def rpcinfo_from_node():
         scroll_message("CHECK VARIABLES")
     return mempool_usage, mempool_minfee, mempool_size, satfee, block_height
 
+def feerecommendations():
+    url = 'https://bitcoinfees.earn.com/api/v1/fees/recommended'
+    # special note: we get 403 errors on this url if using default user agent
+    respurl = urllib.urlopen(url)
+    if(respurl.getcode() == 200):
+        respdata = respurl.read()
+        jsonrespdata = json.loads(respdata)
+        fastest = str(jsonrespdata["fastestFee"])
+        halfhour = str(jsonrespdata["halfHourFee"])
+        hour = str(jsonrespdata["hourFee"])
+        return fastest, halfhour, hour
+    else:
+        print("CODE" + str(respurl.getcode()))
+        print(respurl.read())
+        return "RESPONSE CODE " + str(respurl.getcode()), "?", "?"
 
 # Main routine ----------------------------------------------------------------
 
@@ -177,9 +195,14 @@ while True:
         
     # RECOMMENDED FEE PER BYTE
     if (show_feerec == 1):
-        recfee = float(satfee) / 125
-        message = "RECOMMENDED SATS PER BYTE " + str(int(recfee))
-        scroll_message(message)        
+        lowfee = float(satfee) / 125
+        message = "SATS PER BYTE FOR NEXT BLOCK " + fee1
+        scroll_message(message)
+        message = "HALF HOUR " + fee2
+        scroll_message(message)
+        message = "IN AN HOUR " + fee3
+        scroll_message(message)
+        message = "MINIMUM FOR MEMPOOL " + str(lowfee)    
 
     # Rest between iterations
     time.sleep(2)
