@@ -5,7 +5,7 @@ This assumes that you have a [Raspberry Pi Zero with Wireless](https://www.raspb
 
 You should also already have installed [Raspbian Lite](https://www.raspberrypi.org/downloads/raspbian/), and acquired the [Pimoroni fourletter-phat Libraries](https://github.com/pimoroni/fourletter-phat)
 
-Video available on YouTube: <a href="https://www.youtube.com/embed/34jkTs-6XuQ"><img src="video-screenshot.png"></a>
+Video available on YouTube: <a href="https://www.youtube.com/embed/NDoi9eRvkL8"><img src="video-screenshot.png"></a>
 
 # Configuration
 Configurable options for **[fourletter-bitcoin.py](./fourletter-bitcoin.py)** are all set at the top of the script
