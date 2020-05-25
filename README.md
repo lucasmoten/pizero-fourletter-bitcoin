@@ -1,5 +1,9 @@
 # pizero-fourletter-bitcoin
-Bitcoin based scripts using the Pimoroni Four Letter pHAT on Raspberry Pi Zero
+This repository contains my Bitcoin oriented scripts using the Pimoroni Four Letter pHAT on Raspberry Pi Zero.
+
+This assumes that you have a [Raspberry Pi Zero with Wireless](https://www.raspberrypi.org/products/raspberry-pi-zero-w/) and a [Pimoroni Four Letter pHAT](http://pimoroni.com/fourletter).
+
+You should also already have installed [Raspbian Lite](https://www.raspberrypi.org/downloads/raspbian/), and acquired the [Pimoroni fourletter-phat Libraries](https://github.com/pimoroni/fourletter-phat)
 
 # Configuration
 Configurable options for **[fourletter-bitcoin.py](./fourletter-bitcoin.py)** are all set at the top of the script
