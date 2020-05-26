@@ -146,6 +146,8 @@ while True:
         mempool_usage, mempool_minfee, mempool_size, satfee, block_height = rpcinfo_from_node()
         # and pricing
         bitcoin_price, btcpriceprovidermsg = getbitcoinprice()
+        # and fee recommendations
+        fee1, fee2, fee3 = feerecommendations()        
         # dont spam the rpc and api calls, this isn't a second by second price display
         if (minutes_between_api_updates < 1):
             minutes_between_api_updates = 10
